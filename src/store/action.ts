@@ -1,4 +1,6 @@
-import { Todo, ActionTypes } from './types';
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { Todo, ActionTypes, Store } from './types';
 
 // Action Creators
 export const addTodo = (): ActionTypes => ({ type: 'ADD_TODO' });
@@ -27,3 +29,11 @@ export const setTodos = (todos: Todo[]): ActionTypes => ({
   type: 'SET_TODOS',
   payload: todos,
 });
+
+export const getTodos = (
+  url: string
+): ThunkAction<void, Store, unknown, Action<string>> => async (dispatch) => {
+  const res = await fetch(url);
+  const todos: Todo[] = await res.json();
+  dispatch(setTodos(todos));
+};

@@ -12,11 +12,11 @@ function TodoAdd() {
   return (
     <Grid pt={2} templateColumns='5fr 1fr' columnGap='3'>
       <Input
-        placeholder='Add a Todo'
+        placeholder='Add a todo'
         value={newTodo}
         onChange={(e) => dispatch(setNewTodo(e.target.value))}
       />
-      <Button onClick={() => addTodo()}>Add Todo</Button>
+      <Button onClick={() => dispatch(addTodo())}>Add Todo</Button>
     </Grid>
   );
 }
